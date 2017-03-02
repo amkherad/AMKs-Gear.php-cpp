@@ -1,8 +1,16 @@
 #include <phpcpp.h>
+
+Php::Value myFunctionAMK() {
+    return "jack jack";
+}
+
+
 /**
  *  tell the compiler that the get_module is a pure C function
  */
 extern "C" {
+
+
 
     /**
      *  Function that is called by PHP right after the PHP process
@@ -15,11 +23,14 @@ extern "C" {
     {
         // static(!) Php::Extension object that should stay in memory
         // for the entire duration of the process (that's why it's static)
-        static Php::Extension extension("yourextension", "1.0");
+        static Php::Extension extension("amksgear", "1.0");
 
         // @todo    add your own functions, classes, namespaces to the extension
+
+        extension.add("amk", myFunctionAMK);
 
         // return the extension
         return extension;
     }
+
 }
